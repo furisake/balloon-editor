@@ -12,6 +12,7 @@ import {
   EditorContent,
   useEditor,
 } from "@tiptap/react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   RiArrowGoBackLine,
@@ -21,7 +22,6 @@ import {
   RiErrorWarningLine,
   RiEyeLine,
   RiFileDownloadLine,
-  RiFileTextLine,
   RiRestartLine,
   RiSave3Line,
   RiWrenchLine,
@@ -541,8 +541,15 @@ export function Editor() {
               </Menu.Positioner>
             </Menu.Portal>
           </Menu.Root>
-          <span className="hidden size-8 place-items-center bg-primary text-primary-foreground sm:grid">
-            <RiFileTextLine className="size-4" aria-hidden="true" />
+          <span className="hidden size-8 place-items-center overflow-hidden rounded-md sm:grid">
+            <Image
+              src="/balloon-editor-icon.png"
+              alt=""
+              width={32}
+              height={32}
+              className="size-8 object-cover"
+              aria-hidden="true"
+            />
           </span>
           <div className="hidden lg:block">
             <h1 className="font-heading text-sm font-semibold tracking-tight">
