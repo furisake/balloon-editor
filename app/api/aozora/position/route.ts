@@ -1,6 +1,10 @@
 import { cookies } from 'next/headers'
 
-import { parseReaderState, recentWorkIds } from '@/lib/aozora/reader-state'
+import {
+  parseReaderState,
+  recentWorkIds,
+  withoutReadingPosition,
+} from '@/lib/aozora/reader-state'
 import { AOZORA_READER_COOKIE } from '@/lib/aozora/types'
 
 export async function POST(request: Request) {
@@ -21,6 +25,40 @@ export async function POST(request: Request) {
     path: '/reader',
     sameSite: 'lax',
   })
+  return new Response(null, {
+    status: 204,
+    headers: { 'Cache-Control': 'no-store' },
+  })
+}
+
+export async function DELETE(request: Request) {
+  const body = (await request.json().catch(() => null)) as {
+    workId?: unknown
+  } | null
+  if (
+    !body ||
+    typeof body.workId !== 'string' ||
+    body.workId.length === 0 ||
+    body.workId.length > 64
+  ) {
+    return new Response(null, { status: 400 })
+  }
+
+  const cookieStore = await cookies()
+  const state = parseReaderState(cookieStore.get(AOZORA_READER_COOKIE)?.value)
+  const nextState = withoutReadingPosition(state, body.workId)
+  const hasSavedWorks = recentWorkIds(nextState).length > 0
+
+  cookieStore.set(
+    AOZORA_READER_COOKIE,
+    hasSavedWorks ? encodeURIComponent(JSON.stringify(nextState)) : '',
+    {
+      maxAge: hasSavedWorks ? 31_536_000 : 0,
+      path: '/reader',
+      sameSite: 'lax',
+    },
+  )
+
   return new Response(null, {
     status: 204,
     headers: { 'Cache-Control': 'no-store' },

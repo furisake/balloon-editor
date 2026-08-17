@@ -76,3 +76,12 @@ export function withReadingPosition(
     positions: Object.fromEntries(recent.map((id) => [id, positions[id]])),
   }
 }
+
+export function withoutReadingPosition(
+  state: ReaderState,
+  workId: string,
+): ReaderState {
+  const positions = { ...state.positions }
+  delete positions[workId]
+  return { version: 4, positions }
+}

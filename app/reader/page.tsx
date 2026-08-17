@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { ShelfWork } from '@/features/reader/components/shelf-work'
 import { getAozoraCatalog, searchAozoraWorks } from '@/lib/aozora/client'
 import { parseReaderState, recentWorkIds } from '@/lib/aozora/reader-state'
 import { AOZORA_READER_COOKIE, type AozoraWork } from '@/lib/aozora/types'
@@ -84,20 +85,12 @@ export default async function ReaderPage({
           </div>
           <ol className="grid auto-cols-[minmax(8.5rem,10.5rem)] grid-flow-col gap-[0.65rem] overflow-x-auto pb-[0.35rem]">
             {shelfWorks.map((work) => (
-              <li key={work.id}>
-                <Link
-                  className="bg-background grid min-h-30 content-end rounded-[0.25rem_0.5rem_0.5rem_0.25rem] border pt-[0.9rem] pr-[0.8rem] pb-[0.8rem] pl-4 shadow-[0_5px_12px_oklch(0_0_0/7%)] transition-[transform,box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_oklch(0_0_0/11%)]"
-                  href={`/reader/${work.id}`}
-                  title={`${work.title}の続きを読む`}
-                >
-                  <strong className="line-clamp-2 overflow-hidden text-[0.86rem] leading-[1.45]">
-                    {work.title}
-                  </strong>
-                  <small className="mt-[0.35rem] overflow-hidden text-[0.65rem] text-ellipsis whitespace-nowrap">
-                    {contributorLabel(work)}
-                  </small>
-                </Link>
-              </li>
+              <ShelfWork
+                contributor={contributorLabel(work)}
+                key={work.id}
+                title={work.title}
+                workId={work.id}
+              />
             ))}
           </ol>
         </section>
