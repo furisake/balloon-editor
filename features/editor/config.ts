@@ -2,11 +2,12 @@ import {
   EditorPlugin,
   PluginNames,
   pluginCharacterChecker,
+  pluginGaijiNoteChecker,
   pluginOcrSuspicious,
   pluginWhitespaceHighlighting,
-} from "@/plugins";
+} from '@/plugins'
 
-export const initialDocumentTitle = "無題の文章";
+export const initialDocumentTitle = '無題の文章'
 
 export const initialContent = `Balloon Editor へようこそ！
 
@@ -22,7 +23,7 @@ export const initialContent = `Balloon Editor へようこそ！
 この世界自らもまた
 あやまれる、無益なる書物なるを。
 
-【文字チェッカー】
+【包摂・外字注記チェッカー】
 青空文庫・外字注記辞書より
 ※［＃「區＋鳥」、第3水準1-94-69］
 佐藤春夫訳「現代語訳　徒然草」の注記より
@@ -38,10 +39,11 @@ export const initialContent = `Balloon Editor へようこそ！
 　広い門の下には、この男のほかに誰もいない。
 青空文庫の表記注記より
 このファイルは W3C 勧告 XHTML1.1 にそった形式で作成されています。
-`;
+`
 
 export const plugins: Map<PluginNames, EditorPlugin> = new Map([
-  ["character-checker", pluginCharacterChecker],
-  ["ocr-suspicious", pluginOcrSuspicious],
-  ["whitespace-highlighting", pluginWhitespaceHighlighting],
-]);
+  ['character-checker', pluginCharacterChecker],
+  ['gaiji-note-checker', pluginGaijiNoteChecker],
+  ['ocr-suspicious', pluginOcrSuspicious],
+  ['whitespace-highlighting', pluginWhitespaceHighlighting],
+])

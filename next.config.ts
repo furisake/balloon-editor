@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
+import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+}
 
-export default nextConfig;
+const withMDX = createMDX({
+  // 必要に応じて、ここにMarkdownプラグインを追加
+})
+
+export default withMDX(nextConfig)

@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -128,231 +128,39 @@
   html {
     @apply font-serif;
   }
-}
-
-.editor-paper.horizontal {
-  width: min(48rem, 100%);
-  min-height: calc(100dvh - 15rem);
-}
-
-.editor-paper.vertical {
-  width: 100%;
-  height: calc(100dvh - 15rem);
-  min-height: 32rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-.tiptap-editor {
-  min-height: calc(100dvh - 15rem);
-  padding: 4rem clamp(2rem, 8vw, 5rem);
-  outline: none;
-  font-family: var(--font-serif), "Yu Mincho", "Hiragino Mincho ProN", serif;
-  font-size: 1rem;
-  line-height: 1.9;
-  letter-spacing: 0.035em;
-  caret-color: var(--primary);
-  white-space: pre-wrap;
-}
-
-.editor-paper.vertical .tiptap-editor,
-.editor-paper.vertical .aozora-preview-text {
-  width: max-content;
-  min-width: 100%;
-  height: 100%;
-  min-height: 0;
-  padding: 3.5rem;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  overflow-wrap: normal;
-}
-
-.aozora-source-editor p {
-  min-height: 1.9em;
-  margin: 0;
-}
-
-.editor-paper.vertical .aozora-source-editor p {
-  min-width: 1.9em;
-  min-height: 0;
-}
-
-.aozora-preview-text {
-  min-height: calc(100dvh - 15rem);
-  padding: 4rem clamp(2rem, 8vw, 5rem);
-  font-family: var(--font-serif), "Yu Mincho", "Hiragino Mincho ProN", serif;
-  font-size: 1rem;
-  line-height: 2;
-  letter-spacing: 0.035em;
-}
-
-.aozora-preview-line {
-  min-height: 2em;
-  white-space: pre-wrap;
-}
-
-.aozora-preview-text ruby {
-  ruby-align: center;
-}
-
-.aozora-preview-text rt {
-  font-size: 0.55em;
-  letter-spacing: 0;
-}
-
-.aozora-preview-note {
-  color: var(--muted-foreground);
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: 0.68em;
-  letter-spacing: 0;
-}
-
-.aozora-heading {
-  font-weight: 600;
-  letter-spacing: 0.08em;
-}
-
-.aozora-heading-大 {
-  padding-block: 0.75em;
-  font-size: 1.5em;
-}
-
-.aozora-heading-中 {
-  padding-block: 0.5em;
-  font-size: 1.25em;
-}
-
-.aozora-heading-小 {
-  font-size: 1.1em;
-}
-
-.aozora-page-break {
-  position: relative;
-  height: 3.5rem;
-  display: grid;
-  place-items: center;
-  color: var(--muted-foreground);
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: 0.625rem;
-}
-
-.aozora-page-break::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  border-top: 1px dashed var(--border);
-}
-
-.aozora-page-break span {
-  position: relative;
-  padding-inline: 0.75rem;
-  background: var(--background);
-}
-
-.editor-paper.vertical .aozora-preview-line {
-  min-width: 2em;
-  min-height: 0;
-}
-
-.editor-paper.vertical .aozora-page-break {
-  width: 3.5rem;
-  height: 100%;
-}
-
-.editor-paper.vertical .aozora-page-break::before {
-  inset-block: 0;
-  inset-inline: auto;
-  border-top: 0;
-  border-right: 1px dashed var(--border);
-}
-
-.editor-paper.vertical .aozora-page-break span {
-  padding-block: 0.75rem;
-  padding-inline: 0;
-}
-
-.aozora-ocr-suspect {
-  border-radius: 0.125rem;
-  background: oklch(0.9 0.12 80 / 45%);
-  box-shadow: inset 0 0 0 1px oklch(0.68 0.17 55 / 75%);
-}
-
-.aozora-ocr-suspect:hover {
-  background: oklch(0.85 0.16 70 / 55%);
-}
-
-.aozora-character-checker-issue {
-  border-radius: 0.125rem;
-  background: oklch(0.91 0.09 20 / 55%);
-  box-shadow: inset 0 -2px 0 oklch(0.58 0.22 25 / 85%);
-}
-
-.aozora-character-checker-issue:hover {
-  background: oklch(0.84 0.14 25 / 60%);
-}
-
-.dark .aozora-ocr-suspect {
-  background: oklch(0.55 0.13 65 / 35%);
-  box-shadow: inset 0 0 0 1px oklch(0.75 0.14 70 / 80%);
-}
-
-.dark .aozora-character-checker-issue {
-  background: oklch(0.5 0.13 25 / 40%);
-  box-shadow: inset 0 -2px 0 oklch(0.72 0.18 25 / 90%);
-}
-
-.aozora-space-marker {
-  position: relative;
-  border-radius: 0.125rem;
-  background: oklch(0.9 0.08 235 / 45%);
-}
-
-.aozora-space-marker::after {
-  content: attr(data-space-marker);
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: oklch(0.5 0.16 245);
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: 0.8em;
-  line-height: 1;
-  pointer-events: none;
-}
-
-.aozora-space-marker-fullwidth {
-  box-shadow: inset 0 0 0 1px oklch(0.65 0.12 235 / 45%);
-}
-
-.aozora-newline-marker {
-  display: inline-block;
-  margin-inline: 0.15em;
-  color: oklch(0.53 0.15 245 / 80%);
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: 0.72em;
-  line-height: 1;
-  vertical-align: 0.08em;
-  user-select: none;
-}
-
-.dark .aozora-space-marker {
-  background: oklch(0.46 0.1 245 / 38%);
-}
-
-.dark .aozora-space-marker::after,
-.dark .aozora-newline-marker {
-  color: oklch(0.76 0.12 235);
-}
-
-@media (max-width: 640px) {
-  .tiptap-editor,
-  .aozora-preview-text {
-    padding: 2.5rem 1.75rem;
-    font-size: 0.9375rem;
+  h1 {
+    @apply text-foreground text-[clamp(1.75rem,4vw,2.25rem)] leading-tight font-semibold tracking-[0.02em];
   }
-
-  .editor-paper.vertical .tiptap-editor,
-  .editor-paper.vertical .aozora-preview-text {
-    padding: 2.5rem 2rem;
+  h2 {
+    @apply text-foreground text-xl leading-snug font-semibold tracking-[0.02em];
+  }
+  p {
+    @apply leading-[1.8];
+  }
+  a {
+    @apply text-primary decoration-primary/35 underline underline-offset-4 transition-colors;
+  }
+  a:hover {
+    @apply decoration-primary;
+  }
+  a:focus-visible {
+    @apply outline-ring outline-2 outline-offset-4;
+  }
+  a svg {
+    @apply inline size-[1em] shrink-0 align-[-0.125em];
+  }
+  article h1 + p,
+  article h2 + p {
+    @apply mt-3;
+  }
+  article p + h1,
+  article p + h2 {
+    @apply mt-6;
+  }
+  button:not(:disabled) {
+    @apply cursor-pointer;
+  }
+  small {
+    @apply text-muted-foreground;
   }
 }

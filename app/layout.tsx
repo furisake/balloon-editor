@@ -1,39 +1,39 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Serif } from "next/font/google";
-import "./globals.css";
-import { cn } from "@/lib/utils";
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono, Noto_Serif } from 'next/font/google'
+import './globals.css'
+import { cn } from '@/lib/utils'
 
-const notoSerif = Noto_Serif({ subsets: ["latin"], variable: "--font-serif" });
+const notoSerif = Noto_Serif({ subsets: ['latin'], variable: '--font-serif' })
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
-  title: "Balloon Editor",
-  description: "青空文庫テキスト用の校正エディタ。",
-};
+  title: 'Balloon',
+  description: '青空文庫テキスト用のリーダー兼エディタ',
+}
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="ja"
       className={cn(
-        "h-full",
-        "antialiased",
+        'h-full',
+        'antialiased',
         geistSans.variable,
         geistMono.variable,
-        "font-serif",
+        'font-serif',
         notoSerif.variable,
       )}
     >
       <body className="flex min-h-full flex-col">{children}</body>
     </html>
-  );
+  )
 }
